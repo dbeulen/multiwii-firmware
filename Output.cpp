@@ -1462,7 +1462,16 @@ void mixTable() {
       angleR += ((int32_t)conf.servoConf[1].rate * att.angle[ROLL])  /50L;
     }
     servo[0] = MIDRC+angleP-angleR;
+    
     servo[1] = MIDRC-angleP-angleR;
+  #endif
+  
+  # ifdef SERVO_MIX_AUX3
+    servo[0] += (rcData[AUX3] - 500 - 1070)/1;
+  #endif
+  
+  #ifdef SERVO_MIX_AUX4
+    servo[1] += (rcData[AUX4] - 500 - 1070)/1;
   #endif
 
 /****************                    Cam trigger Servo                ******************/
